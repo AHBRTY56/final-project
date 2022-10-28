@@ -14,6 +14,8 @@
       src="https://kit.fontawesome.com/154fc7bf92.js"
       crossorigin="anonymous"
     ></script>
+    <script src="https://unpkg.com/axios@1.1.2/dist/axios.min.js"></script>
+
     <link rel="stylesheet" href="src/style.css" />
     <title>Weather App</title>
   </head>
@@ -31,12 +33,19 @@
               </ul>
             </div>
             <div class="col-6">
-              <i class="fa-solid fa-sun"></i>
-
-              <span id="temperature">12</span
-              ><span class="units"
-                ><a href="#">°C</a> | <a href="#"> °F</a></span
-              >
+              <div class="d-flex weather-temperature">
+                <img
+                  src="https://shecodes-assets.s3.amazonaws.com/api/weather/icons/clear-sky-day.png"
+                />
+                <span id="temperature"> 12 </span>
+                <span class="units">
+                  <a href="#" id="celsius-link">°C </a>|<a
+                    href="#"
+                    id="fahrenheit-link"
+                    >°F</a
+                  ></span
+                >
+              </div>
             </div>
           </div>
         </div>

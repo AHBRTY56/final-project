@@ -5,7 +5,7 @@
   font-family: "Google Sans", arial, sans-serif;
 }
 .weather-app-wrapper {
-  max-width: 500px;
+  max-width: 550px;
   margin: 30px auto;
 }
 h1 {
@@ -26,18 +26,18 @@ li {
   margin: 0;
   padding: 0;
 }
-.fa-sun {
-  font-size: 40px;
-  color: rgb(255, 204, 0);
-}
-#temperature {
-  font-size: 50px;
-}
-.units {
-  position: relative;
-  font-size: 16px;
-  top: -25px;
-}
+
 .percent {
   color: gray;
+}
+.weather-temperature {
+  display: flex;
+}
+
+.units {
+  position: relative;
+  bottom: -25px;
+}
+#temperature {
+  font-size: 72px;
 }
