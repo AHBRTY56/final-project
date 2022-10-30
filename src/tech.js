@@ -22,7 +22,6 @@ function formatDate(timestamp) {
 }
 
 function displayTemperature(response) {
-  console.log(response);
   let temperatureElement = document.querySelector("#temperature");
   temperatureElement.innerHTML = Math.round(response.data.temperature.current);
   let cityElement = document.querySelector("#city");
@@ -35,6 +34,11 @@ function displayTemperature(response) {
   dateElement.innerHTML = formatDate(response.data.time * 1000);
   let windElement = document.querySelector("#wind");
   windElement.innerHTML = response.data.wind.speed;
+  let picElement = document.querySelector("#pic");
+  picElement.setAttribute(
+    "src",
+    `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
+  );
 }
 let apiKey = "bc7dota507232177ccef048eb1a1ae2a";
 let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Kharkiv&key=${apiKey}&units=metric`;
