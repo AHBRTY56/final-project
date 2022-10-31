@@ -41,5 +41,6 @@ function displayTemperature(response) {
   );
 }
 let apiKey = "bc7dota507232177ccef048eb1a1ae2a";
-let apiUrl = `https://api.shecodes.io/weather/v1/current?query=Kharkiv&key=${apiKey}&units=metric`;
+let city = "Kharkiv";
+let apiUrl = `https://api.shecodes.io/weather/v1/current?q=${city}&key=${apiKey}&units=metric`;
 axios.get(apiUrl).then(displayTemperature);
