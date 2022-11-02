@@ -23,7 +23,7 @@ function formatDate(timestamp) {
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(response.data.temperature.current);
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
   let cityElement = document.querySelector("#city");
   cityElement.innerHTML = response.data.city;
   let descriptionElement = document.querySelector("#description");
@@ -39,18 +39,43 @@ function displayTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  celsiusTemperature = response.data.temperature.current;
 }
+
 function search(city) {
   let apiKey = "bc7dota507232177ccef048eb1a1ae2a";
 
   let apiUrl = `https://api.shecodes.io/weather/v1/current?query=${city}&key=${apiKey}&units=metric`;
   axios.get(apiUrl).then(displayTemperature);
 }
-search("Berlin");
+
 function handleSubmit(event) {
   event.preventDefault;
   let cityInputElement = document.querySelector("#city-input");
-  console.log(cityInputElement.value);
+  let city = document.querySelector("#city");
+  city.innerHTML = cityInputElement.value;
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureFahr = document.querySelector("#temperature");
+  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+
+  temperatureFahr.innerHTML = Math.round(fahrenheitTemp);
+}
+let celsiusTemperature = null;
+let fahrenheitLink = document.querySelector("#fahrenheit-link");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temperature");
+  temperatureElement.innerHTML = Math.round(celsiusTemperature);
+}
+
+let celsiusLink = document.querySelector("#celsius-link");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
+
+search("Kyiv");
