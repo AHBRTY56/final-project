@@ -50,10 +50,11 @@ function search(city) {
 }
 
 function handleSubmit(event) {
-  event.preventDefault;
+  event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
   let city = document.querySelector("#city");
   city.innerHTML = cityInputElement.value;
+  search(cityInputElement.value);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
@@ -81,5 +82,4 @@ function displayCelsiusTemperature(event) {
 
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
-
-search("Kyiv");
+search("Kiev");
