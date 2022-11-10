@@ -29,9 +29,9 @@ function displayForecast() {
       forecastHTML +
       `
   
-            <div class="row">
+        
               <div class="col-2">
-                <div class="date-forecast">Thu</div>
+                <div class="date-forecast">${day}</div>
                 <img
                   src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
                   alt="clouds"
@@ -43,23 +43,6 @@ function displayForecast() {
                 </div>
               </div>
            
-          `;
-    forecastHTML =
-      forecastHTML +
-      ` <div class="row">
-              <div class="col-2">
-                <div class="date-forecast">Thu</div>
-                <img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
-                  alt="clouds"
-                  width="44"
-                />
-                <div class="weather-forecast-temperatures">
-                  <span class="temp-max"> 18°</span>
-                  <span class="temp-min"> 12°</span>
-                </div>
-              </div>
-            
           `;
   });
   forecastHTML = forecastHTML + `</div>`;
