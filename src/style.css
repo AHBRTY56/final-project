@@ -51,3 +51,18 @@ li::first-letter {
 .weather-temperature .active:hover {
   text-decoration: none;
 }
+.weather-forecast {
+  text-align: center;
+  margin-top: 20px;
+  color: black;
+}
+.date-forecast {
+  font-size: 16px;
+  opacity: 0.5;
+}
+.weather-forecast-temperatures {
+  font-size: 14px;
+}
+.temp-min {
+  opacity: 0.5;
+}
