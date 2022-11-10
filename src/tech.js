@@ -20,6 +20,52 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
+function displayForecast() {
+  let forecastelement = document.querySelector("#forecast");
+  let days = ["Thu", "Fri", "Sat", "Sun"];
+  let forecastHTML = `<div class="row">`;
+  days.forEach(function (day) {
+    forecastHTML =
+      forecastHTML +
+      `
+  
+            <div class="row">
+              <div class="col-2">
+                <div class="date-forecast">Thu</div>
+                <img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
+                  alt="clouds"
+                  width="44"
+                />
+                <div class="weather-forecast-temperatures">
+                  <span class="temp-max"> 18°</span>
+                  <span class="temp-min"> 12°</span>
+                </div>
+              </div>
+           
+          `;
+    forecastHTML =
+      forecastHTML +
+      ` <div class="row">
+              <div class="col-2">
+                <div class="date-forecast">Thu</div>
+                <img
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
+                  alt="clouds"
+                  width="44"
+                />
+                <div class="weather-forecast-temperatures">
+                  <span class="temp-max"> 18°</span>
+                  <span class="temp-min"> 12°</span>
+                </div>
+              </div>
+            
+          `;
+  });
+  forecastHTML = forecastHTML + `</div>`;
+  forecastelement.innerHTML = forecastHTML;
+  console.log(forecastHTML);
+}
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -83,3 +129,4 @@ function displayCelsiusTemperature(event) {
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 search("Kiev");
+displayForecast();
