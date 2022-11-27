@@ -20,9 +20,10 @@ function formatDate(timestamp) {
   let day = days[date.getDay()];
   return `${day} ${hours}:${minutes}`;
 }
-function displayForecast() {
+function displayForecast(response) {
+  console.log(response.data.daily);
   let forecastelement = document.querySelector("#forecast");
-  let days = ["Thu", "Fri", "Sat", "Sun"];
+  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
   let forecastHTML = `<div class="row">`;
   days.forEach(function (day) {
     forecastHTML =
@@ -49,6 +50,12 @@ function displayForecast() {
   forecastelement.innerHTML = forecastHTML;
   console.log(forecastHTML);
 }
+function getForecast(coordinates) {
+  console.log(coordinates);
+  let apiKey = "bc7dota507232177ccef048eb1a1ae2a";
+  let apiUrl = `https://api.openweathermap.org/data/2.5/onecall?lat=${coordinates.lat}&lon=${coordinates.long}&appid=${apiKey}&units=metric`;
+  axios.get(apiUrl).then(displayForecast);
+}
 
 function displayTemperature(response) {
   let temperatureElement = document.querySelector("#temperature");
@@ -69,6 +76,7 @@ function displayTemperature(response) {
     "src",
     `http://shecodes-assets.s3.amazonaws.com/api/weather/icons/${response.data.condition.icon}.png`
   );
+  getForecast(response.data.coordinates);
 }
 
 function search(city) {
@@ -112,4 +120,3 @@ function displayCelsiusTemperature(event) {
 let celsiusLink = document.querySelector("#celsius-link");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 search("Kiev");
-displayForecast();
