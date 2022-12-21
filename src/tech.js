@@ -21,34 +21,41 @@ function formatDate(timestamp) {
   return `${day} ${hours}:${minutes}`;
 }
 function displayForecast(response) {
-  console.log(response.data.daily);
+  let forecast = response.data.daily;
   let forecastelement = document.querySelector("#forecast");
-  let days = ["Thu", "Fri", "Sat", "Sun", "Mon", "Tue"];
+
   let forecastHTML = `<div class="row">`;
-  days.forEach(function (day) {
-    forecastHTML =
-      forecastHTML +
-      `
+  forecast.forEach(function (forecastDay, index) {
+    if (index < 6) {
+      forecastHTML =
+        forecastHTML +
+        `
   
         
               <div class="col-2">
-                <div class="date-forecast">${day}</div>
+                <div class="date-forecast">${formatDay(forecastDay.dt)}</div>
                 <img
-                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/icons/scattered-clouds-day.png"
+                  src="http://shecodes-assets.s3.amazonaws.com/api/weather/${
+                    forecastDay.weather[0].icon
+                  }.png"
                   alt="clouds"
                   width="44"
                 />
                 <div class="weather-forecast-temperatures">
-                  <span class="temp-max"> 18°</span>
-                  <span class="temp-min"> 12°</span>
+                  <span class="temp-max"> ${Math.round(
+                    forecastDay.temp.max
+                  )}°</span>
+                  <span class="temp-min"> ${Math.round(
+                    forecastDay.temp.min
+                  )}°</span>
                 </div>
               </div>
            
           `;
+    }
   });
   forecastHTML = forecastHTML + `</div>`;
   forecastelement.innerHTML = forecastHTML;
-  console.log(forecastHTML);
 }
 function getForecast(coordinates) {
   console.log(coordinates);
@@ -89,34 +96,33 @@ function search(city) {
 function handleSubmit(event) {
   event.preventDefault();
   let cityInputElement = document.querySelector("#city-input");
-  let city = document.querySelector("#city");
-  city.innerHTML = cityInputElement.value;
+
   search(cityInputElement.value);
 }
 let form = document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-function displayFahrenheitTemperature(event) {
-  event.preventDefault();
-  let temperatureFahr = document.querySelector("#temperature");
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
-  let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
+// function displayFahrenheitTemperature(event) {
+//   event.preventDefault();
+//   let temperatureFahr = document.querySelector("#temperature");
+//   celsiusLink.classList.remove("active");
+//   fahrenheitLink.classList.add("active");
+//   let fahrenheitTemp = (celsiusTemperature * 9) / 5 + 32;
 
-  temperatureFahr.innerHTML = Math.round(fahrenheitTemp);
-}
-let celsiusTemperature = null;
-let fahrenheitLink = document.querySelector("#fahrenheit-link");
-fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+//   temperatureFahr.innerHTML = Math.round(fahrenheitTemp);
+// }
+// let celsiusTemperature = null;
+// let fahrenheitLink = document.querySelector("#fahrenheit-link");
+// fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
-function displayCelsiusTemperature(event) {
-  event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
-  let temperatureElement = document.querySelector("#temperature");
-  temperatureElement.innerHTML = Math.round(celsiusTemperature);
-}
+// function displayCelsiusTemperature(event) {
+//   event.preventDefault();
+//   celsiusLink.classList.add("active");
+//   fahrenheitLink.classList.remove("active");
+//   let temperatureElement = document.querySelector("#temperature");
+//   temperatureElement.innerHTML = Math.round(celsiusTemperature);
+// }
 
-let celsiusLink = document.querySelector("#celsius-link");
-celsiusLink.addEventListener("click", displayCelsiusTemperature);
+// let celsiusLink = document.querySelector("#celsius-link");
+// celsiusLink.addEventListener("click", displayCelsiusTemperature);
 search("Kiev");
